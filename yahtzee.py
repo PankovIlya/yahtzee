@@ -1,4 +1,4 @@
-import combinatorics as cmb
+import combinatorics_g as cmb
 
 """
 Planner for Yahtzee
@@ -34,11 +34,13 @@ def expected_value(held_dice, num_die_sides, num_free_dice):
                                  num_free_dice)
     held = list(held_dice)
     sum_comb = 0.0
+    n = 0
     for itm in set_free:
         sum_comb += score(held + itm)
+        n += 1
         
 
-    return sum_comb/len(set_free)
+    return sum_comb/n
 
 
 def gen_all_holds(hand):
