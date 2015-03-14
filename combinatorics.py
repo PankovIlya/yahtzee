@@ -10,8 +10,7 @@ def permutations(alist, kk):
 
 def permutationsr(alist, kk):
     """ permutation with repetition"""
-    fooe = lambda lst, k: [[]] if not k else [[lst[num]] + item for num in xrange(len(lst))
-                                                            for item in fooe(lst, k-1)] 
+    fooe = lambda lst, k: [[]] if not k else [[num] + item for num in lst for item in fooe(lst, k-1)] 
     return fooe(alist, kk)
 
 def combinations(alist, kk):
@@ -32,6 +31,7 @@ def boolean(alist):
 
 def set_combinationsr(alist):
     """ set of combinations with repetition"""
+    """ мрак конечно, просто пример """
     return reduce(lambda res, x: [item + xcnt for item in res
                                   for xcnt in [[x]*cnt for cnt in xrange(1, len(alist)-len(item)+1)]] + res, alist,[[]])
 
@@ -40,18 +40,16 @@ if __name__ == "__main__":
     #ll = ["a", "b", "c", "d", "e", "f"]
 
     ll = [1,2,3]
+    k = 2
+    n = len(ll)
+    f = math.factorial
 
-    print boolean(ll)
-
-    print len(permutations(ll,2)) 
-
-    print len(permutationsr(ll,2))
-
-    print len(combinations(ll,2))
-
-    print len(combinationsr(ll,2))
-
-    print set_combinationsr(ll)
+    assert(len(boolean(ll)) == 2**n)
+    assert(len(permutations(ll,k)) == f(n)/f(n - k))
+    assert(len(permutationsr(ll,k)) == n**k)
+    assert(len(combinations(ll,k)) == f(n)/(f(k)*f(n-k)))
+    assert(len(combinationsr(ll,k)) == f(n+k-1)/(f(k)*f(n-1)))
+    print len(set_combinationsr(ll))
 
 
 
