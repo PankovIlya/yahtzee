@@ -32,18 +32,13 @@ def expected_value(held_dice, num_die_sides, num_free_dice):
     """
     set_free = cmb.permutationsr([x for x in xrange(1, num_die_sides+1)],
                                  num_free_dice)
-    sumn = len(set_free)
     held = list(held_dice)
-    
     sum_comb = 0.0
     for itm in set_free:
-        hand = held + itm
-        print hand
-        val_score = score(hand)
-        sum_comb += val_score
+        sum_comb += score(held + itm)
         
 
-    return sum_comb/(len(set_free))
+    return sum_comb/len(set_free)
 
 
 def gen_all_holds(hand):
@@ -82,23 +77,11 @@ def run_example():
     hand_score, hold = strategy(hand, num_die_sides)
     print "Best strategy for hand", hand, "is to hold", hold, "with expected score", hand_score
     
-    
-run_example()
+if __name__ == "__main__":   
 
-#a = (1,2,2,5)
-
-#print gen_all_holds(a)
-#print score(a)
-held = tuple([2,2])
-#print held
-print expected_value(held, 6, 2)
-
-#import poc_holds_testsuite
-#poc_holds_testsuite.run_suite(gen_all_holds)
-                                       
-    
-    
-    
-
-
-
+    a = (1,2,2,5)
+    print gen_all_holds(a)
+    print score(a)
+    held = tuple([2,2])
+    print expected_value(held, 6, 2)
+    run_example()
