@@ -14,16 +14,10 @@ def score(hand):
     res = 0
     dscor = {}
     for itm in hand:
-        dscor.setdefault(itm, 0)
-        dscor[itm] += 1
-        
-    for itm in dscor:
-        val = dscor[itm]*itm
-        if val > res:
-            res = val
-            
+        dscor[itm] =  dscor.setdefault(itm, 0) + itm
+        if res < dscor[itm]:
+            res = dscor[itm]
     return res
-
 
 def expected_value(held_dice, num_die_sides, num_free_dice):
     """
