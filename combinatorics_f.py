@@ -31,7 +31,7 @@ def boolean(alist):
 
 def set_combinationsr(alist):
     """ set of combinations with repetition"""
-    """ мрак конечно, просто пример """
+    """ it looks awful, leave it here just as example """
     return reduce(lambda res, x: [item + xcnt for item in res
                                   for xcnt in [[x]*cnt for cnt in xrange(1, len(alist)-len(item)+1)]] + res, alist,[[]])
 
